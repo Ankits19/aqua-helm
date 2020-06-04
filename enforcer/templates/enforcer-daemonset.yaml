@@ -84,6 +84,10 @@ spec:
           value: "{{ .Values.runcInterception }}"
         - name: SENDING_HOST_IMAGES_DISABLED
           value: "{{ .Values.sendingHostImagesDisables }}"
+    {{- range $name, $value, := .Values.extraEnvArgs }}
+        - name: {{ $name }}
+          value: {{ $value }}
+    {{- end }}
         volumeMounts:
         - mountPath: /var/run
           name: var-run
